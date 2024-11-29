@@ -1,13 +1,13 @@
-import React from "react";
-import { Link } from "gatsby";
-import fineGoldImage from "../images/finegold.webp";
-import standardGoldImage from "../images/standardgold.webp";
-import silverImage from "../images/silver.webp";
-import { AiFillHome } from "react-icons/ai"; // Import Home icon from react-icons
-import "../styles/DayPrice.css"; // Import the CSS file
+import React from "react"
+import { Link } from "gatsby"
+import fineGoldImage from "../images/finegold.webp"
+import standardGoldImage from "../images/standardgold.webp"
+import silverImage from "../images/silver.webp"
+import { AiFillHome } from "react-icons/ai" // Import Home icon from react-icons
+import "../styles/DayPrice.css" // Import the CSS file
 
 const DayPrice = ({ pageContext }) => {
-  const { date, fineGold, standardGold, silver, prev, next } = pageContext;
+  const { date, fineGold, standardGold, silver, prev, next } = pageContext
 
   return (
     <div className="container">
@@ -23,15 +23,41 @@ const DayPrice = ({ pageContext }) => {
       <div className="prices-grid">
         {/* Fine Gold Section */}
         <div className="price-card">
-          <div className="sparkle-animation gold-sparkle"></div>
-          <img src={fineGoldImage} alt="Fine Gold Bar" className="price-image" />
+          <div className="sparkle-animation gold-sparkle">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <span
+                key={i}
+                style={{
+                  "--i": i,
+                  "--x": Math.random() * 2 - 1, // Random horizontal direction
+                  "--y": Math.random() * 2 - 1, // Random vertical direction
+                }}
+              ></span>
+            ))}
+          </div>
+          <img
+            src={fineGoldImage}
+            alt="Fine Gold Bar"
+            className="price-image"
+          />
           <h2 className="price-title">Fine Gold</h2>
           <p className="price-value">Price: NPR {fineGold} (per tola)</p>
         </div>
 
         {/* Standard Gold Section */}
         <div className="price-card">
-          <div className="sparkle-animation gold-sparkle"></div>
+          <div className="sparkle-animation gold-sparkle">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <span
+                key={i}
+                style={{
+                  "--i": i,
+                  "--x": Math.random() * 2 - 1,
+                  "--y": Math.random() * 2 - 1,
+                }}
+              ></span>
+            ))}
+          </div>
           <img
             src={standardGoldImage}
             alt="Standard Gold Bar"
@@ -43,7 +69,18 @@ const DayPrice = ({ pageContext }) => {
 
         {/* Silver Section */}
         <div className="price-card">
-          <div className="sparkle-animation silver-sparkle"></div>
+          <div className="sparkle-animation silver-sparkle">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <span
+                key={i}
+                style={{
+                  "--i": i,
+                  "--x": Math.random() * 2 - 1,
+                  "--y": Math.random() * 2 - 1,
+                }}
+              ></span>
+            ))}
+          </div>
           <img src={silverImage} alt="Silver Bar" className="price-image" />
           <h2 className="price-title">Silver</h2>
           <p className="price-value">Price: NPR {silver} (per tola)</p>
@@ -69,7 +106,7 @@ const DayPrice = ({ pageContext }) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DayPrice;
+export default DayPrice
