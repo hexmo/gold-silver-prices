@@ -1,78 +1,75 @@
-import React from "react"
-import { Link } from "gatsby"
-import fineGoldImage from "../images/finegold.webp"
-import standardGoldImage from "../images/standardgold.webp"
-import silverImage from "../images/silver.webp"
+import React from "react";
+import { Link } from "gatsby";
+import fineGoldImage from "../images/finegold.webp";
+import standardGoldImage from "../images/standardgold.webp";
+import silverImage from "../images/silver.webp";
+import { AiFillHome } from "react-icons/ai"; // Import Home icon from react-icons
+import "../styles/DayPrice.css"; // Import the CSS file
 
 const DayPrice = ({ pageContext }) => {
-  const { date, fineGold, standardGold, silver, prev, next } = pageContext
+  const { date, fineGold, standardGold, silver, prev, next } = pageContext;
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-6xl font-bold mb-64">Prices for {date}</h1>
-      <div className="flex flex-row row-span-3">
-        {/* Fine Gold */}
-        <div className="mb-6">
-          <img
-            src={fineGoldImage}
-            alt="Fine Gold Bar"
-            className="mx-auto rounded shadow"
-          />
-          <h2 className="text-xl font-semibold text-center mt-4">Fine Gold</h2>
-          <p className="text-center">Price: NPR {fineGold}</p>
+    <div className="container">
+      {/* Header with Home Icon */}
+      <div className="header">
+        <Link to="/" className="home-link">
+          <AiFillHome className="home-icon" />
+        </Link>
+        <h1 className="page-title">Prices for {date}</h1>
+      </div>
+
+      {/* Prices Section */}
+      <div className="prices-grid">
+        {/* Fine Gold Section */}
+        <div className="price-card">
+          <div className="sparkle-animation gold-sparkle"></div>
+          <img src={fineGoldImage} alt="Fine Gold Bar" className="price-image" />
+          <h2 className="price-title">Fine Gold</h2>
+          <p className="price-value">Price: NPR {fineGold} (per tola)</p>
         </div>
 
-        {/* Standard Gold */}
-        <div className="mb-6">
+        {/* Standard Gold Section */}
+        <div className="price-card">
+          <div className="sparkle-animation gold-sparkle"></div>
           <img
             src={standardGoldImage}
             alt="Standard Gold Bar"
-            className="w-64 mx-auto rounded shadow"
+            className="price-image"
           />
-          <h2 className="text-xl font-semibold text-center mt-4">
-            Standard Gold
-          </h2>
-          <p className="text-center">Price: NPR {standardGold}</p>
+          <h2 className="price-title">Standard Gold</h2>
+          <p className="price-value">Price: NPR {standardGold} (per tola)</p>
         </div>
 
-        {/* Silver */}
-        <div className="mb-6">
-          <img
-            src={silverImage}
-            alt="Silver Bar"
-            className="w-64 mx-auto rounded shadow"
-          />
-          <h2 className="text-xl font-semibold text-center mt-4">Silver</h2>
-          <p className="text-center">Price: NPR {silver}</p>
+        {/* Silver Section */}
+        <div className="price-card">
+          <div className="sparkle-animation silver-sparkle"></div>
+          <img src={silverImage} alt="Silver Bar" className="price-image" />
+          <h2 className="price-title">Silver</h2>
+          <p className="price-value">Price: NPR {silver} (per tola)</p>
         </div>
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex justify-between mt-6">
+      <div className="navigation-buttons">
         {prev ? (
-          <Link
-            to={`/prices/${prev.date}`}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
+          <Link to={`/prices/${prev.date}`} className="nav-button">
             Previous Day ({prev.date})
           </Link>
         ) : (
-          <span className="text-gray-400">No Previous Day</span>
+          <span className="nav-disabled">No Previous Day</span>
         )}
 
         {next ? (
-          <Link
-            to={`/prices/${next.date}`}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
+          <Link to={`/prices/${next.date}`} className="nav-button">
             Next Day ({next.date})
           </Link>
         ) : (
-          <span className="text-gray-400">No Next Day</span>
+          <span className="nav-disabled">No Next Day</span>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DayPrice
+export default DayPrice;
