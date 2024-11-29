@@ -1,26 +1,35 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import "../styles/HomePage.css" // Import CSS for styling
 
 const HomePage = ({ data }) => {
-  const dates = data.allGoldPricesCsv.nodes
+  const dates = data.allGoldPricesCsv.nodes.reverse() // Reverse the order of dates
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">
-        Gold, Fine Gold & Silver Prices
-      </h1>
-      <ul className="list-disc pl-5">
-        {dates.map((node, index) => (
-          <li key={index}>
-            <Link
-              to={`/prices/${node.date}`}
-              className="text-blue-500 hover:underline"
-            >
-              {node.date}
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <div className="container">
+      <h1 className="title">Gold, Fine Gold & Silver Prices</h1>
+      <table className="prices-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          {dates.map((node, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{node.date}</td>
+              <td>
+                <Link to={`/prices/${node.date}`} className="date-link">
+                  View Prices
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }
